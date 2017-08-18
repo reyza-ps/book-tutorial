@@ -1,0 +1,24 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: root
+  password: 12345678
+  socket: /var/run/mysqld/mysqld.sock
+
+#environment development setting
+development:
+  <<: *default
+  database: cms_development
+
+#environment test setting
+test:
+  <<: *default
+  database: cms_test
+
+#environment production setting
+production:
+  <<: *default
+  database: cms_production
+  username: cms
+  password: <%= ENV['CMS_DATABASE_PASSWORD'] %>

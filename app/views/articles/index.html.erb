@@ -1,0 +1,27 @@
+<h1>Listing Article</h1>
+
+<table class="highlight">
+  <% unless @articles.blank? %>
+
+  <tr>
+  </tr>
+  <!-- @articles adalah instance variable dari controller dan diparsing di view. -->
+ <!-- do |article| adalah article variable dari @article -->
+<% @articles.each do |article| %>
+  <tr>
+    <td><%= link_to article.title, article_path(article) %></td>
+    <td><%= link_to t('forms.buttons.edit'), edit_article_path(article)%> </td>
+    <td><%= link_to 'destroy', article_path(article), method: "DELETE", data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+   <% else %>
+   <tr>
+     <td>Article not found</td>
+   </tr>
+
+   <% end %>
+</table>
+
+<br />
+
+<%= link_to "New Article", new_article_path %>

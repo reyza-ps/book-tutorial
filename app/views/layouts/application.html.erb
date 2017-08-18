@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cms</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    
+    <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo right">Logo</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">JavaScript</a></li>
+      </ul>
+    </div>
+  </nav>
+
+   <h1>Listing Article</h1>
+
+<table>
+  <% unless @articles.blank? %>
+
+  <tr>
+  </tr>
+  <!-- @articles adalah instance variable dari controller dan diparsing di view. -->
+ <!-- do |article| adalah article variable dari @article -->
+<% @articles.each do |article| %>
+  <tr>
+    <td><%= link_to article.title, article_path(article) %></td>
+    <td><%= link_to t('forms.buttons.edit'), edit_article_path(article)%> </td>
+    <td><%= link_to 'destroy', article_path(article), method: "DELETE", data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+   <% else %>
+   <tr>
+     <td>Article not found</td>
+   </tr>
+
+   <% end %>
+</table>
+
+<br />
+
+<%= link_to "New Article", new_article_path %>
+
+
+  </body>
+</html>

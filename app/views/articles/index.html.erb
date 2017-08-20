@@ -1,27 +1,31 @@
-<h1>Listing Article</h1>
+<div align="center">
+  <h4>Listing Article</h4>
+</div>
 
-<table class="highlight">
-  <% unless @articles.blank? %>
+<% unless @articles.blank? %>
 
-  <tr>
-  </tr>
-  <!-- @articles adalah instance variable dari controller dan diparsing di view. -->
- <!-- do |article| adalah article variable dari @article -->
+<!-- @articles adalah instance variable dari controller dan diparsing di view. -->
+<!-- do |article| adalah article variable dari @article -->
 <% @articles.each do |article| %>
-  <tr>
-    <td><%= link_to article.title, article_path(article) %></td>
-    <td><%= link_to t('forms.buttons.edit'), edit_article_path(article)%> </td>
-    <td><%= link_to 'destroy', article_path(article), method: "DELETE", data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+
+  <div class="divider"></div>
+  <div class="section">
+    <h5><%= link_to article.title, article_path(article) %></h5>
+    <p>
+      <%= truncate article.body, length: 160 %>
+      <%= link_to "Read More..", article_path(article) %>
+      <br />
+    </p>
+  </div>
+
+  <%= link_to t('forms.buttons.edit'), edit_article_path(article)%> |
+  <%= link_to 'destroy', article_path(article), method: "DELETE", data: { confirm: 'Are you sure?' } %>
 <% end %>
-   <% else %>
-   <tr>
-     <td>Article not found</td>
-   </tr>
-
-   <% end %>
-</table>
-
+  <% else %>
+    Article not found
+  <% end %>
 <br />
 
-<%= link_to "New Article", new_article_path %>
+<div align="right" style="margin-right: 50px;">
+  <%= link_to raw("<i class=\"material-icons\">edit</i>"), new_article_path, class: "btn btn-floating btn-large pulse red accent-2" %>
+</div>

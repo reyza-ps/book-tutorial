@@ -1,11 +1,12 @@
 class ArticlesController < ApplicationController
   
   def index
-    #@article adalah instance variable
-    #Article.all model Article dengan memanggil method all
-    @articles = Article.all
+    if params[:search]
+      @articles = Article.search(params[:search]).paginate(:per_page => 5, :page => params[:page])
+    else
+      @articles = Article.paginate(:per_page => 5, :page => params[:page])
+    end
   end
-
 
   def show
     @article = Article.find_by_id(params[:id])

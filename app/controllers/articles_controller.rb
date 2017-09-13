@@ -1,10 +1,15 @@
 class ArticlesController < ApplicationController
   
   def index
-    if params[:search]
-      @articles = Article.search(params[:search]).paginate(:per_page => 5, :page => params[:page])
-    else
-      @articles = Article.paginate(:per_page => 5, :page => params[:page])
+    if params[:status] == 'true' 
+      #@articles = Article.where(status_article: params[:status]) 
+      @articles = Article.by_status(params[:status]).paginate(:per_page => 5, :page => params[:page]) 
+    elsif params[:status] == 'false' 
+      @articles = Article.where(status_article: params[:status]).paginate(:per_page => 5, :page => params[:page]) 
+    elsif params[:search] 
+      @articles = Article.search(params[:search]).paginate(:per_page => 5, :page => params[:page]) 
+    else 
+      @articles = Article.paginate(:per_page => 5, :page => params[:page]) 
     end
   end
 
@@ -45,7 +50,7 @@ class ArticlesController < ApplicationController
   private
 
   def params_articles
-    params.require(:article).permit(:title, :body)
+    params.require(:article).permit(:title, :body, :status_article)
   end
 
 end

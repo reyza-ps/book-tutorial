@@ -15,10 +15,10 @@
 
   <div class="input-field col s12">
     <%= f.text_field :title, type: "text", class: "validate" %>
-    <%= f.label :title, "data-error": "wrong", "data-success": "right" %>
+    <%= f.label :title, "data-error": "wrong", "data-success": "right", style: "font-size: 20px;" %>
   </div>
 
-  <div class="col s12">
+  <div class="col s12" style="margin-top: 50px;">
     <%= f.label :body %>
   </div>
 
@@ -26,8 +26,18 @@
     <%= f.cktext_area :body, type: "text" %>
   </div>
 
-  <div class="input-field col s12">
-    
+  <!-- Switch -->
+  <div class="col s12" style="margin-top: 50px;">
+    <%= f.label :status_article %>
+  </div>
+
+  <div class="switch col s12">
+    <label>
+      Inactive
+      <%= f.check_box(:status_article) %>
+      <span class="lever"></span>
+      Active
+    </label>
   </div>
 
   <div align="right" style="margin-right: 20px;">

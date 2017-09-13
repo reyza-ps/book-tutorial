@@ -20,12 +20,13 @@
 
   <div class="divider"></div>
   <div class="section">
-    <h5><%= link_to article.title, article_path(article) %></h5>
-    <p>
-      <%= raw article.body.truncate(160) %>
-      <%= link_to "Read More..", article_path(article) %>
-      <br />
-    </p>
+    <h5 align="left"><%= link_to article.title, article_path(article) %> 
+    <% if article.status_article == true %> 
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Active<i class="material-icons">check</i> 
+    <%else%> 
+      Inactive<i class="material-icons">close</i> 
+    <% end %> 
+    </h5>
   </div>
 
   <%= link_to t('forms.buttons.edit'), edit_article_path(article)%> |

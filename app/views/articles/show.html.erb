@@ -1,11 +1,22 @@
-<p>
-<strong>Title:</strong>
-<%= @article.title %>
-</p>
-<p>
-<strong>Text:</strong>
-<%= raw @article.body %>
-</p>
+<div class="wrap">
+  <div class="box box1 shadow1">
+    <h3><%= @article.title %> 
+    <% if @article.status_article == true %>
+      <i class="material-icons">check</i></h3>
+    <% else %>
+      <i class="material-icons">close</i></h3>
+    <% end %>
+  </div>
+  <%= raw @article.body %>
+  <hr />
+</div>
 
-<%= link_to "Back", articles_path %>
-<%= link_to "Edit", edit_article_path(@article) %>
+<div align="right" style="margin-right: 20px;"> 
+    <%= link_to(articles_path, class: "btn btn-floating btn-large pulse red accent-2") do %>
+      <i class="material-icons">arrow_back</i>
+    <% end %> 
+
+    <%= link_to(edit_article_path(@article), class: "btn btn-floating btn-large pulse red accent-2") do %>
+      <i class="material-icons">mode_edit</i>
+    <% end %> 
+</div>
